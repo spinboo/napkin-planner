@@ -1,28 +1,24 @@
-const Okr = () => {
+const ObjectivesAndKeyResults = props => {
   return React.createElement("div", {}, [
-    React.createElement(
-      "h1",
-      {},
-      "Understand react, building a professional application"
-    ),
-    React.createElement(
-      "h2",
-      {},
-      "Learn Node, creating an api for a professional application"
-    ),
-    React.createElement(
-      "h2",
-      {},
-      "Understand deeply javascript reading some stuff"
-    )
+    React.createElement("h1", {}, props.title),
+    React.createElement("h2", {}, props.keyResult)
   ]);
 };
 
 const App = () => {
   return React.createElement("div", {}, [
-    React.createElement(Okr),
-    React.createElement(Okr),
-    React.createElement(Okr)
+    React.createElement(ObjectivesAndKeyResults, {
+      title: "Learn and Understand React",
+      keyResult: "Create the frontend app by the end of Q3"
+    }),
+    React.createElement(ObjectivesAndKeyResults, {
+      title: "Learn and Understand Nodejs",
+      keyResult: "Create an api for an app by the end of Q4"
+    }),
+    React.createElement(ObjectivesAndKeyResults, {
+      title: "Understand javascript",
+      keyResult: "make at least 5 concise exercise each quarter"
+    })
   ]);
 };
 
