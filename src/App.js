@@ -1,35 +1,27 @@
-const ObjectivesAndKeyResults = props => {
-  return React.createElement("div", {}, [
-    React.createElement("h1", {}, props.title),
-    React.createElement("h2", {}, props.keyResult)
-  ]);
-};
+import React from "react";
+import { render } from "react-dom";
+import ObjectivesAndKeyResults from "./ObjectivesAndKeyResults";
 
 class App extends React.Component {
-  handleTitleClick() {
-    alert("you clicked the title");
-  }
   render() {
-    return React.createElement("div", {}, [
-      React.createElement(
-        "h1",
-        { onClick: this.handleTitleClick },
-        "Napkin Planner"
-      ),
-      React.createElement(ObjectivesAndKeyResults, {
-        title: "Learn and Understand React",
-        keyResult: "Create the frontend app by the end of Q3"
-      }),
-      React.createElement(ObjectivesAndKeyResults, {
-        title: "Learn and Understand Nodejs",
-        keyResult: "Create an api for an app by the end of Q4"
-      }),
-      React.createElement(ObjectivesAndKeyResults, {
-        title: "Understand javascript",
-        keyResult: "make at least 5 concise exercise each quarter"
-      })
-    ]);
+    return (
+      <div>
+        <h1>Napking Planner</h1>
+        <ObjectivesAndKeyResults
+          title="Learn and Understand React"
+          keyResults="Building and frontend app"
+        />
+        <ObjectivesAndKeyResults
+          title="Learn and Understand Nodejs"
+          keyResults="Building and backend app"
+        />
+        <ObjectivesAndKeyResults
+          title="Learn and Understand JS deeply"
+          keyResults="make 5 concise exercise"
+        />
+      </div>
+    );
   }
 }
 
-ReactDOM.render(React.createElement(App), document.getElementById("root"));
+render(React.createElement(App), document.getElementById("root"));
