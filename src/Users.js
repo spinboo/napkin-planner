@@ -1,5 +1,9 @@
 import React from "react";
 import User from "./User";
+import SearchBox from "./SearchBox";
+import { Consumer } from "./SearchUserContext";
+
+import users from "../seed/users";
 
 class Users extends React.Component {
   constructor(props) {
@@ -11,48 +15,26 @@ class Users extends React.Component {
   }
 
   componentDidMount() {
-    const users = [
-      {
-        id: 1,
-        name: "Carolina Candelaria",
-        surname: "Garcia Gonzalez",
-        email: "ccgarciagonzalez@spinboo.com",
-        salary: 50000,
-        role: "Project Manager"
-      },
-      {
-        id: 2,
-        name: "Daniel",
-        surname: "Perez Crespo",
-        email: "dperezcrespo@spinboo.com",
-        salary: 50000,
-        role: "Developer"
-      },
-      {
-        id: 3,
-        name: "Gustavo",
-        surname: "Perez Crespo",
-        email: "gperezcrespo@spinboo.com",
-        salary: 50000,
-        role: ["Purchase Manager"]
-      },
-      {
-        id: 4,
-        name: "Ana Belen",
-        surname: "De la torre Enriquez",
-        email: "abdelatorreenriquez@spinboo.com",
-        salary: 50000,
-        role: ["Sales Manager"]
-      }
-    ];
-
+    this.search();
     this.setState({
-      users
+      users: this.search()
     });
   }
+
+  search = () => {
+    if (this.props.searchParams.firstname.length === 0) {
+      return users;
+    } else {
+      this.state.users.filter(user => {
+        return user.name === this.props.searchParams.firstname;
+      });
+    }
+  }
+
   render() {
     return (
       <div className="search">
+        <SearchBox search={this.search} />
         {this.state.users.map(user => {
           return (
             <User
@@ -69,6 +51,12 @@ class Users extends React.Component {
       </div>
     );
   }
-}
+};
 
-export default Users;
+export default function UsersWithContext(props) {
+  return (
+    <Consumer>
+      {context => <Users {...props} searchParams={context} />}
+    </Consumer>
+  )
+};
