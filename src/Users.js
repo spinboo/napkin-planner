@@ -3,7 +3,7 @@ import User from "./User";
 import SearchBox from "./SearchBox";
 import { Consumer } from "./SearchUserContext";
 
-import users from "../seed/users";
+import seedUsers from "../seed/users";
 
 class Users extends React.Component {
   constructor(props) {
@@ -16,19 +16,21 @@ class Users extends React.Component {
 
   componentDidMount() {
     this.search();
-    this.setState({
-      users: this.search()
-    });
   }
 
   search = () => {
+    let users;
     if (this.props.searchParams.firstname.length === 0) {
-      return users;
+      users = seedUsers;
     } else {
-      this.state.users.filter(user => {
+      users = this.state.users.filter(user => {
         return user.name === this.props.searchParams.firstname;
       });
     }
+
+    this.setState({
+      users
+    });
   }
 
   render() {
