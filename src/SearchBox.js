@@ -55,11 +55,7 @@ class SearchBox extends React.Component {
                   <option value={'developer'}>developer</option>
                 </select>
               </label>
-              <button
-                onClick={this.handleFormSubmit}
-              >
-                Submit
-              </button>
+              <button>Submit</button>
             </form>
           </div>
         )
